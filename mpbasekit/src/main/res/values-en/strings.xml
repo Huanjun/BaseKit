@@ -1,0 +1,32 @@
+<resources>
+    <string name="mp_dialog_loading">Loading...</string>
+
+    <string name="mp_no_data">No data</string>
+    <string name="mp_error_data">Network error</string>
+
+    <string name="hour_">h</string>
+    <string name="minute">m</string>
+    <string name="second">s</string>
+
+    <string name="network_timeout">Network anomaly</string>
+
+    <string name="mp_dialog_permission_fail">Authorization failed</string>
+    <string name="mp_toast_open_permission">Please open permissions</string>
+    <string name="mp_btn_repermission">Reauthorization</string>
+    <string name="mp_btn_cancel">Cancel</string>
+    <string name="mp_btn_sure">Confirm</string>
+    <string name="network_error">Network not available</string>
+
+    <string name="load_more_all">No more~</string>
+    <string name="retry">click to retry</string>
+    <string name="text_tips">Warm Prompt</string>
+    <string name="mp_success">Success!</string>
+
+    <string name="network_server_error">Network error</string>
+    <string name="text_copy_suc">Success</string>
+    <string name="load_more_error">Failed</string>
+    <string name="load_more_loading">Loading</string>
+    <string name="pic_save_succ">Success</string>
+    <string name="pic_save_fail">Failed</string>
+
+</resources>

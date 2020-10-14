@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MPGifTextureView">
+        <attr name="mpGifSource" format="reference|string"/>
+        <attr name="mpIsOpaque" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="MPGifView">
+        <attr name="mpFreezesAnimation" format="boolean"/>
+        <attr name="mpLoopCount" format="integer"/>
+    </declare-styleable>
+</resources>

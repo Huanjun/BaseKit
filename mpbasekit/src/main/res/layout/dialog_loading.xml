@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="120dp"
+        android:layout_height="92dp"
+        android:background="@drawable/b_corners_bak"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp">
+
+        <com.zyao89.view.zloading.ZLoadingView
+            android:id="@+id/z_loading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/z_transparent"
+            app:z_color="@color/mp_white" />
+
+        <com.mp.basekit.util.toast.anim.SuccessAnim
+            android:id="@+id/sucView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/loadText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:singleLine="true"
+            android:text="@string/mp_dialog_loading"
+            android:textColor="@color/mp_white"
+            android:textSize="11sp" />
+
+        <com.zyao89.view.zloading.ZLoadingTextView
+            android:id="@+id/z_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone"
+            app:z_color="@color/mp_white"
+            app:z_text="Loading..." />
+    </LinearLayout>
+
+</LinearLayout>

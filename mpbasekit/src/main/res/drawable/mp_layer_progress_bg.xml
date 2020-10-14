@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@android:id/background">
+        <shape>
+            <corners android:radius="3dip" />
+            <gradient
+                android:angle="0"
+                android:centerColor="@color/mp_color_blue"
+                android:endColor="@color/mp_color_blue"
+                android:startColor="@color/mp_color_blue" />
+        </shape>
+    </item>
+    <item android:id="@android:id/progress">
+        <scale android:scaleWidth="100%"
+            android:drawable="@drawable/mp_shape_bg_progress">
+        </scale>
+    </item>
+
+</layer-list>
