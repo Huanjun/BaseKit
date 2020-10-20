@@ -17,7 +17,6 @@ import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.NonNull;
 
 import com.mp.basekit.R;
-import com.mp.basekit.util.DensityUtil;
 
 import java.util.Objects;
 
@@ -38,7 +37,7 @@ public abstract class MPDialog extends Dialog {
         super.onCreate(savedInstanceState);
         Objects.requireNonNull(getWindow()).setBackgroundDrawableResource(R.color.mp_color_transparent);
         setContentView(initLayout());
-        initDialogWindow(getDialogWith());
+        initDialogWindow(getDialogWith(), getDialogHeight());
         setCanceledOnTouchOutside(false);
         initEvent();
     }
@@ -47,13 +46,17 @@ public abstract class MPDialog extends Dialog {
         return 0.85f;
     }
 
+    protected float getDialogHeight() {
+        return -1f;
+    }
+
     protected int getAnim() {
         return R.style.MpDialogCommonAnim;
     }
 
     @SuppressLint("NewApi")
     @SuppressWarnings("deprecation")
-    protected void initDialogWindow(float width) {
+    protected void initDialogWindow(float width, float height) {
         Window dialogWindow = getWindow();
         //WindowManager.LayoutParams lp = dialogWindow.getAttributes();
         assert dialogWindow != null;
@@ -72,8 +75,14 @@ public abstract class MPDialog extends Dialog {
         WindowManager.LayoutParams p = dialogWindow.getAttributes(); // 获取对话框当前的参数值
         if (activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) { // 竖屏
             p.width = (int) (mScreenPoint.x * width);
+            if (height != -1) {
+                p.height = (int) (mScreenPoint.y * height);
+            }
         } else {// 横屏时
-            p.width = DensityUtil.dip2px(300);
+            p.height = (int) (mScreenPoint.y * height);
+            if (width != -1) {
+                p.width = (int) (mScreenPoint.x * width);
+            }
         }
 
         dialogWindow.setWindowAnimations(getAnim());

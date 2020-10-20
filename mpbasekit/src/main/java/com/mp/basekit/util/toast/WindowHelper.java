@@ -10,8 +10,8 @@ import android.util.ArrayMap;
 import android.view.WindowManager;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/ToastUtils
+ *    author
+ *
  *    time   : 2018/11/06
  *    desc   : WindowManager 辅助类（用于获取当前 Activity 的 WindowManager 对象）
  */

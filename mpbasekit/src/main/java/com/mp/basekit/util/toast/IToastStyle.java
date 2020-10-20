@@ -1,8 +1,8 @@
 package com.mp.basekit.util.toast;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/ToastUtils
+ *    author
+ *
  *    time   : 2018/09/01
  *    desc   : 默认样式接口
  */

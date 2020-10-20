@@ -9,8 +9,8 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/ToastUtils
+ *    author
+ *
  *    time   : 2018/11/02
  *    desc   : 自定义 Toast 辅助类
  */

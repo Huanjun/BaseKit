@@ -3,8 +3,8 @@ package com.mp.basekit.util.toast;
 import android.app.Application;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/ToastUtils
+ *    author
+ *
  *    time   : 2018/11/02
  *    desc   : Toast 无通知栏权限兼容
  */

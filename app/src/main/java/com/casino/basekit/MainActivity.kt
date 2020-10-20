@@ -2,10 +2,19 @@ package com.casino.basekit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.mp.basekit.util.toast.ToastUtils
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        btnSuc.setOnClickListener {
+            ToastUtils.showSuc("Success")
+        }
+        btnWarn.setOnClickListener {
+            ToastUtils.show("Warning")
+        }
     }
 }

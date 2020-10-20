@@ -50,7 +50,7 @@ public class DialogLoading extends MPDialog {
     }
 
     @Override
-    protected void initDialogWindow(float width) {
+    protected void initDialogWindow(float width, float height) {
         if (!isDialog) {
             Window window = getWindow(); //得到对话框
             if (window != null) {

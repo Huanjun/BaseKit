@@ -7,8 +7,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/ToastUtils
+ *    author
+ *
  *    time   : 2018/11/03
  *    desc   : Toast 基类
  */

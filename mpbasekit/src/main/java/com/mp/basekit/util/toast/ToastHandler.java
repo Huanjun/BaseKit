@@ -11,8 +11,8 @@ import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
 
 /**
- * author : Android 轮子哥
- * github : https://github.com/getActivity/ToastUtils
+ * author
+ * <p>
  * time   : 2018/11/12
  * desc   : Toast 显示处理类
  */
@@ -34,6 +34,7 @@ final class ToastHandler extends Handler {
 
     // 吐司队列
     private volatile Queue<CharSequence> mQueue;
+    private volatile Queue<Integer> mQueueType;
 
     // 当前是否正在执行显示操作
     private volatile boolean isShow;
@@ -45,15 +46,19 @@ final class ToastHandler extends Handler {
         super(Looper.getMainLooper());
         mToast = toast;
         mQueue = new ArrayBlockingQueue<>(MAX_TOAST_CAPACITY);
+        mQueueType = new ArrayBlockingQueue<>(MAX_TOAST_CAPACITY);
     }
 
-    void add(CharSequence s) {
+    void add(int type, CharSequence s) {
         if (mQueue.isEmpty() || !mQueue.contains(s)) {
             // 添加一个元素并返回true，如果队列已满，则返回false
+            mQueueType.offer(type);
             if (!mQueue.offer(s)) {
                 // 移除队列头部元素并添加一个新的元素
                 mQueue.poll();
                 mQueue.offer(s);
+                mQueueType.poll();
+                mQueueType.offer(type);
             }
         }
     }
@@ -65,16 +70,6 @@ final class ToastHandler extends Handler {
             // 如果当前 Activity 在 ToastUtils.show 之后进行 finish 了，那么这个时候 Toast 可能会显示不出来
             // 因为 Toast 会显示在销毁 Activity 界面上，而不会显示在新跳转的 Activity 上面
             sendEmptyMessageDelayed(TYPE_SHOW, DELAY_TIMEOUT);
-        }
-    }
-
-    void showSuc() {
-        if (!isShow) {
-            isShow = true;
-            // 延迟一段时间之后再执行，因为在没有通知栏权限的情况下，Toast 只能显示当前 Activity
-            // 如果当前 Activity 在 ToastUtils.show 之后进行 finish 了，那么这个时候 Toast 可能会显示不出来
-            // 因为 Toast 会显示在销毁 Activity 界面上，而不会显示在新跳转的 Activity 上面
-            sendEmptyMessageDelayed(TYPE_SHOW_SUC, DELAY_TIMEOUT);
         }
     }
 
@@ -91,11 +86,12 @@ final class ToastHandler extends Handler {
             case TYPE_SHOW:
                 // 返回队列头部的元素，如果队列为空，则返回null
                 CharSequence text = mQueue.peek();
+                Integer type = mQueueType.peek();
                 if (text != null) {
                     mToast.setText(text);
                     PathAnimView anim = mToast.getView().findViewWithTag("WarningAnim");
                     if (anim != null) {
-                        anim.refresh(PathAnimView.WARNING);
+                        anim.refresh(type == null ? PathAnimView.WARNING : type);
                     }
                     mToast.show();
                     // 等这个 Toast 显示完后再继续显示，要加上一些延迟
@@ -105,33 +101,12 @@ final class ToastHandler extends Handler {
                     isShow = false;
                 }
                 break;
-            case TYPE_SHOW_SUC:
-                CharSequence textSuc = mQueue.peek();
-                if (textSuc != null) {
-                    mToast.setText(textSuc);
-                    PathAnimView anim = mToast.getView().findViewWithTag("WarningAnim");
-                    if (anim != null) {
-                        anim.refresh(PathAnimView.SUCCESS);
-                    }
-                    mToast.show();
-                    sendEmptyMessageDelayed(TYPE_CONTINUE_SUC, getToastDuration(textSuc) + DELAY_TIMEOUT);
-                } else {
-                    isShow = false;
-                }
-                break;
             case TYPE_CONTINUE:
                 // 移除并返问队列头部的元素，如果队列为空，则返回null
                 mQueue.poll();
+                mQueueType.poll();
                 if (!mQueue.isEmpty()) {
                     sendEmptyMessage(TYPE_SHOW);
-                } else {
-                    isShow = false;
-                }
-                break;
-            case TYPE_CONTINUE_SUC:
-                mQueue.poll();
-                if (!mQueue.isEmpty()) {
-                    sendEmptyMessage(TYPE_SHOW_SUC);
                 } else {
                     isShow = false;
                 }
@@ -139,6 +114,7 @@ final class ToastHandler extends Handler {
             case TYPE_CANCEL:
                 isShow = false;
                 mQueue.clear();
+                mQueueType.clear();
                 mToast.cancel();
                 break;
             default:

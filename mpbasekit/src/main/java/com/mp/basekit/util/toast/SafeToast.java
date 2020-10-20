@@ -9,8 +9,8 @@ import android.widget.Toast;
 import java.lang.reflect.Field;
 
 /**
- *    author : Android 轮子哥
- *    github : https://github.com/getActivity/ToastUtils
+ *    author
+ *
  *    time   : 2018/12/06
  *    desc   : Toast 显示安全处理
  */

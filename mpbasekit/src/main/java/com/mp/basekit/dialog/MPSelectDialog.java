@@ -53,8 +53,9 @@ public class MPSelectDialog extends MPDialog implements View.OnClickListener {
     }
 
     @Override
-    protected void initDialogWindow(float width) {
+    protected void initDialogWindow(float width, float height) {
         Window dialogWindow = getWindow();
+        assert dialogWindow != null;
         dialogWindow.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
 
         WindowManager m = activity.getWindowManager();

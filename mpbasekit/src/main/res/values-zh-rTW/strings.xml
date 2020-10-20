@@ -1,0 +1,31 @@
+<resources>
+    <string name="mp_dialog_loading">Loading...</string>
+
+    <string name="mp_no_data">暫無數據</string>
+    <string name="mp_error_data">網絡異常，請點擊重試</string>
+
+
+    <string name="hour_">時</string>
+    <string name="minute">分</string>
+    <string name="second">秒</string>
+
+    <string name="mp_dialog_permission_fail">授權失敗</string>
+    <string name="mp_toast_open_permission">請開啟權限</string>
+    <string name="mp_btn_repermission">去開啟</string>
+    <string name="mp_btn_cancel">取消</string>
+    <string name="mp_btn_sure">確定</string>
+    <string name="network_error">網絡不可用，請檢查網絡設置</string>
+    <string name="network_timeout">網絡不給力，請求超時！</string>
+    <string name="network_server_error">網絡異常，請稍後重試</string>
+    <string name="text_copy_suc">復制成功</string>
+
+    <string name="retry">點擊重試</string>
+    <string name="text_tips">溫馨提示</string>
+    <string name="mp_success">成功！</string>
+    <string name="load_more_error">加載失敗</string>
+    <string name="load_more_loading">正在加載...</string>
+    <string name="load_more_all">-- 沒有更多數據 --</string>
+    <string name="pic_save_succ">圖片保存成功</string>
+    <string name="pic_save_fail">圖片保存失敗</string>
+
+</resources>

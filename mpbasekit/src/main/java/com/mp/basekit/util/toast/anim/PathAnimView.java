@@ -7,10 +7,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
-import android.graphics.RectF;
 import android.util.AttributeSet;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,33 +29,7 @@ public class PathAnimView extends ToastImage {
     private int color = -23333;
 
     private int type = WARNING;
-
-    protected List<Path> getPaths() {
-        float width = getWidth();
-        float height = getHeight();
-        List<Path> paths = new ArrayList<>();
-        Path circle = new Path();
-        circle.addArc(new RectF(0 + width / 20f, 0 + width / 20f, width - width / 20f, height - width / 20f)
-                , 0f, 360f);
-        paths.add(circle);
-        Path longLine = new Path();
-        longLine.moveTo(width / 2f, height * 0.2f);
-        longLine.lineTo(width / 2f, height * 0.6f);
-        paths.add(longLine);
-        Path shortLine = new Path();
-        shortLine.moveTo(width / 2f, height * 0.7f);
-        shortLine.lineTo(width / 2f, height * 0.8f);
-        paths.add(shortLine);
-        return paths;
-    }
-
-    protected void setPaint(Paint paint) {
-        paint.setAntiAlias(true);
-        paint.setFilterBitmap(true);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(getWidth() * 0.05f);
-        paint.setColor(Color.parseColor("#FFA900"));
-    }
+    ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);
 
     @Override
     public void setDuration(int duration) {
@@ -95,6 +67,8 @@ public class PathAnimView extends ToastImage {
     public void refresh(int type) {
         this.type = type;
         begin = false;
+        valueAnimator.cancel();
+        percentage = 0f;
         rightDstPath.reset();
         invalidate();
     }
@@ -116,7 +90,6 @@ public class PathAnimView extends ToastImage {
             if (color != -23333) {
                 paint.setColor(color);
             }
-            ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, 1);
             valueAnimator.addUpdateListener(animation -> {
                 percentage = (float) animation.getAnimatedValue();
                 postInvalidate();

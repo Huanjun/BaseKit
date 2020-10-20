@@ -28,8 +28,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * author : Android 轮子哥
- * github : https://github.com/getActivity/ToastUtils
+ * author
  * time   : 2018/09/01
  * desc   : Toast 工具类
  */
@@ -81,7 +80,7 @@ public final class ToastUtils {
         }
 
         // 初始化布局
-        setView(createTextView(application.getApplicationContext()));
+        setView(createToastView(application.getApplicationContext()));
 
         // 初始化位置
         setGravity(sDefaultStyle.getGravity(), sDefaultStyle.getXOffset(), sDefaultStyle.getYOffset());
@@ -124,7 +123,7 @@ public final class ToastUtils {
 
         if (text == null || TextUtils.isEmpty(text.toString())) return;
 
-        sToastHandler.add(text);
+        sToastHandler.add(PathAnimView.WARNING, text);
         sToastHandler.show();
     }
 
@@ -138,8 +137,8 @@ public final class ToastUtils {
 
         if (text == null || TextUtils.isEmpty(text.toString())) return;
 
-        sToastHandler.add(text);
-        sToastHandler.showSuc();
+        sToastHandler.add(PathAnimView.SUCCESS, text);
+        sToastHandler.show();
     }
 
     /**
@@ -220,7 +219,7 @@ public final class ToastUtils {
         if (sToast != null) {
             // 取消原有吐司的显示
             sToast.cancel();
-            sToast.setView(createTextView(sToast.getView().getContext().getApplicationContext()));
+            sToast.setView(createToastView(sToast.getView().getContext().getApplicationContext()));
             sToast.setGravity(sDefaultStyle.getGravity(), sDefaultStyle.getXOffset(), sDefaultStyle.getYOffset());
         }
     }
@@ -254,7 +253,7 @@ public final class ToastUtils {
     /**
      * 生成默认的 TextView 对象
      */
-    private static View createTextView(Context context) {
+    private static View createToastView(Context context) {
         final LinearLayout toastLayout = new LinearLayout(context);
         toastLayout.setOrientation(LinearLayout.HORIZONTAL);
         toastLayout.setGravity(Gravity.CENTER);
@@ -271,8 +270,8 @@ public final class ToastUtils {
         //config image
         toastImage.setColor(sDefaultStyle.getTextColor());
         toastLayout.addView(toastImage, imageParams);
-        //add text
 
+        //add text
         GradientDrawable drawable = new GradientDrawable();
         // 设置背景色
         drawable.setColor(sDefaultStyle.getBackgroundColor());
