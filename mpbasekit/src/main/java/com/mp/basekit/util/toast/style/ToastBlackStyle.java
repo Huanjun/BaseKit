@@ -5,8 +5,8 @@ import android.view.Gravity;
 import com.mp.basekit.util.toast.IToastStyle;
 
 /**
- * author
- *
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/ToastUtils
  * time   : 2018/09/01
  * desc   : 默认黑色样式实现
  */

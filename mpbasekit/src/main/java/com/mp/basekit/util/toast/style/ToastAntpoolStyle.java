@@ -6,8 +6,8 @@ import com.mp.basekit.util.DensityUtil;
 import com.mp.basekit.util.toast.IToastStyle;
 
 /**
- * author
- *
+ * author : Android 轮子哥
+ * github : https://github.com/getActivity/ToastUtils
  * time   : 2018/12/06
  * desc   : 支付宝样式实现
  */
